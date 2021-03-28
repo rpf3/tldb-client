@@ -1,6 +1,9 @@
 <script lang="ts">
 	import Counter from '$lib/Counter.svelte';
+	import Tailwind from '$lib/Tailwind.svelte';
 </script>
+
+<Tailwind />
 
 <main>
 	<h1>Hello world!</h1>
