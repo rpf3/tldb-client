@@ -1,12 +1,20 @@
 const sveltePreprocess = require('svelte-preprocess');
 const node = require('@sveltejs/adapter-node');
 const pkg = require('./package.json');
+const postcss = require('postcss');
 
 /** @type {import('@sveltejs/kit').Config} */
 module.exports = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: sveltePreprocess(),
+	preprocess: sveltePreprocess({
+		postcss: {
+			plugins: [
+				require("tailwindcss"),
+				require("autoprefixer"),
+			],
+		},
+	}),
 	kit: {
 		// By default, `npm run build` will create a standard Node app.
 		// You can create optimized builds for different platforms by
