@@ -14,4 +14,6 @@
 	export let artist: Artist;
 </script>
 
-<h2>{artist.name}</h2>
+<div class="flex flex-col text-center mb-10">
+	<h1>{artist.name}</h1>
+</div>
