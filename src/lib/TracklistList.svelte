@@ -8,7 +8,7 @@
 
 		<p class="mt-4">
 			{#each tracklist.artists as artist, i}
-				<span>{artist.name}</span>
+				<a href="/artists/{artist.id}" class="cursor-pointer text-indigo-500">{artist.name}</a>
 				{i == tracklist.artists.length - 1 ? '' : ' & '}
 			{/each}
 		</p>
