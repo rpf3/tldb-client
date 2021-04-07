@@ -1,10 +1,15 @@
 <script lang="ts" context="module">
-	export async function load({ fetch }) {
-		const tracklists = await fetch('http://localhost:5000/tracklists?verbose=1').then((r) =>
-			r.json()
-		);
+	export async function load({ page, fetch }) {
+		let pageParam = Number(page.query.get('page'));
+		let pageNumber = pageParam > 1 ? pageParam : 1;
+		let skip = pageNumber > 1 ? (pageNumber - 1) * 10 : 0;
+
+		const tracklists = await fetch(
+			`http://localhost:5000/tracklists?verbose=1&skip=${skip}`
+		).then((r) => r.json());
 		return {
 			props: {
+				pageNumber: pageNumber,
 				tracklists: tracklists
 			}
 		};
@@ -12,6 +17,7 @@
 </script>
 
 <script lang="ts">
+	export let pageNumber: number;
 	export let tracklists: Tracklist[];
 </script>
 
@@ -63,3 +69,21 @@
 		</li>
 	{/each}
 </ol>
+
+<div class="flex flex-row">
+	{#if pageNumber > 1}
+		<a
+			href="/?page={pageNumber - 1}"
+			class="mx-auto bg-blue-500 text-white rounded text-large px-4 py-2 hover:bg-blue-600 focus:outline-none"
+			>Previous</a
+		>
+	{:else}
+		<a class="mx-auto bg-gray-500 text-white rounded text-large px-4 py-2">Previous</a>
+	{/if}
+
+	<a
+		href="/?page={pageNumber + 1}"
+		class="mx-auto bg-blue-500 text-white rounded text-large px-4 py-2 hover:bg-blue-600 focus:outline-none"
+		>Next</a
+	>
+</div>
