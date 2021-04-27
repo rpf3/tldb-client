@@ -31,7 +31,7 @@
 </script>
 
 <script lang="ts">
-	import IconLink from '$lib/IconLink.svelte';
+	import IconLink from '$lib/components/IconLink.svelte';
 
 	export let artist: Artist;
 	export let tracklists: Tracklist[];
