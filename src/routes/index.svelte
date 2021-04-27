@@ -17,6 +17,7 @@
 </script>
 
 <script lang="ts">
+	import ButtonLink from '$lib/ButtonLink.svelte';
 	import IconLink from '$lib/IconLink.svelte';
 
 	export let pageNumber: number;
@@ -48,18 +49,10 @@
 
 <div class="flex flex-row">
 	{#if pageNumber > 1}
-		<a
-			href="/?page={pageNumber - 1}"
-			class="mx-auto bg-blue-500 text-white rounded text-large px-4 py-2 hover:bg-blue-600 focus:outline-none"
-			>Previous</a
-		>
+		<ButtonLink href="/?page={pageNumber - 1}" text="Previous" />
 	{:else}
-		<a class="mx-auto bg-gray-500 text-white rounded text-large px-4 py-2">Previous</a>
+		<ButtonLink text="Previous" />
 	{/if}
 
-	<a
-		href="/?page={pageNumber + 1}"
-		class="mx-auto bg-blue-500 text-white rounded text-large px-4 py-2 hover:bg-blue-600 focus:outline-none"
-		>Next</a
-	>
+	<ButtonLink href="/?page={pageNumber + 1}" text="Next" />
 </div>
