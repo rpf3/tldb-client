@@ -36,7 +36,7 @@
 
 				<p class="mt-2">
 					{#each tracklist.artists as artist, i}
-						<a href="/artists/{artist.id}" class="cursor-pointer text-indigo-500">{artist.name}</a>
+						<a href="/artists/{artist.id}" class="cursor-pointer text-blue-500">{artist.name}</a>
 						{i == tracklist.artists.length - 1 ? '' : ' & '}
 					{/each}
 				</p>
