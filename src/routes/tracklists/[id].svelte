@@ -38,7 +38,7 @@
 			<div class="ml-4">
 				<h2>{getTrackDisplayName(track.track)}</h2>
 				<p class="mt-2">
-					<a href="/artists/{track.track.artist.id}" class="cursor-pointer text-indigo-500"
+					<a href="/artists/{track.track.artist.id}" class="cursor-pointer text-blue-500"
 						>{track.track.artist.name}</a
 					>
 				</p>
