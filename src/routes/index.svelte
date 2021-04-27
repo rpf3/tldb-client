@@ -17,8 +17,8 @@
 </script>
 
 <script lang="ts">
-	import ButtonLink from '$lib/ButtonLink.svelte';
-	import IconLink from '$lib/IconLink.svelte';
+	import ButtonLink from '$lib/components/ButtonLink.svelte';
+	import IconLink from '$lib/components/IconLink.svelte';
 
 	export let pageNumber: number;
 	export let tracklists: Tracklist[];
