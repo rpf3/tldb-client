@@ -20,6 +20,7 @@
 <script lang="ts">
 	import ButtonLink from '$lib/components/ButtonLink.svelte';
 	import IconLink from '$lib/components/IconLink.svelte';
+	import ListItem from '$lib/components/ListItem.svelte';
 
 	export let pageNumber: number;
 	export let tracklists: Tracklist[];
@@ -31,7 +32,7 @@
 
 <ol class="list-none">
 	{#each tracklists as tracklist, i}
-		<li class="flex items-center pb-4 mb-4 {i < tracklists.length - 1 ? 'border-b' : ''}">
+		<ListItem isLastItem={i < tracklists.length - 1}>
 			<div class="flex-grow">
 				<span>{tracklist.name}</span>
 
@@ -44,7 +45,7 @@
 			</div>
 
 			<IconLink href="/tracklists/{tracklist.id}" />
-		</li>
+		</ListItem>
 	{/each}
 </ol>
 
