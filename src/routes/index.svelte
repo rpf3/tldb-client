@@ -1,12 +1,13 @@
 <script lang="ts" context="module">
-	export async function load({ page, fetch }) {
+	import * as api from '$lib/api';
+
+	export async function load({ page }) {
 		let pageParam = Number(page.query.get('page'));
 		let pageNumber = pageParam > 1 ? pageParam : 1;
 		let skip = pageNumber > 1 ? (pageNumber - 1) * 10 : 0;
 
-		const tracklists = await fetch(
-			`http://localhost:5000/tracklists?verbose=1&skip=${skip}`
-		).then((r) => r.json());
+		const tracklists = await api.get(`/tracklists?verbose=1&skip=${skip}`);
+
 		return {
 			props: {
 				pageNumber: pageNumber,

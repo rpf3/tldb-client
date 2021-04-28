@@ -1,9 +1,11 @@
 <script lang="ts" context="module">
-	export async function load({ page, fetch }) {
+	import * as api from '$lib/api';
+
+	export async function load({ page }) {
 		const tracklistId = page.params.id;
-		const tracklist = await fetch(
-			`http://localhost:5000/tracklists/${tracklistId}?verbose=1`
-		).then((r) => r.json());
+
+		const tracklist = await api.get(`/tracklists/${tracklistId}?verbose=1`);
+
 		return {
 			props: {
 				tracklist: tracklist
