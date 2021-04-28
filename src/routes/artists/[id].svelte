@@ -1,16 +1,12 @@
 <script lang="ts" context="module">
-	export async function load({ page, fetch }) {
+	import * as api from '$lib/api';
+
+	export async function load({ page }) {
 		const artistId = page.params.id;
 
-		const artist = await fetch(`http://localhost:5000/artists/${artistId}`).then((r) => r.json());
-
-		const tracklists = await fetch(
-			`http://localhost:5000/artists/${artistId}/tracklists`
-		).then((r) => r.json());
-
-		const tracks = await fetch(
-			`http://localhost:5000/artists/${artistId}/tracks?verbose=1`
-		).then((r) => r.json());
+		const artist = await api.get(`/artists/${artistId}`);
+		const tracklists = await api.get(`/artists/${artistId}/tracklists`);
+		const tracks = await api.get(`/artists/${artistId}/tracks?verbose=1`);
 
 		return {
 			props: {
