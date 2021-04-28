@@ -23,6 +23,8 @@
 </script>
 
 <script lang="ts">
+	import ListItem from '$lib/components/ListItem.svelte';
+
 	export let tracklist: Tracklist;
 </script>
 
@@ -32,7 +34,7 @@
 
 <ol class="list-none">
 	{#each tracklist.tracks as track, i}
-		<li class="flex items-center pb-4 mb-4 {i < tracklist.tracks.length - 1 ? 'border-b' : ''}">
+		<ListItem isLastItem={i < tracklist.tracks.length - 1}>
 			<div>
 				<span>{track.index}</span>
 			</div>
@@ -45,6 +47,6 @@
 					>
 				</p>
 			</div>
-		</li>
+		</ListItem>
 	{/each}
 </ol>
