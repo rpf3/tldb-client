@@ -12,18 +12,11 @@
 			}
 		};
 	}
-
-	const getTrackDisplayName = function (track: Track) {
-		let displayName = track.name;
-		if (track.remix) {
-			displayName = `${displayName} (${track.remix.artist.name} ${track.remix.name})`;
-		}
-		return displayName;
-	};
 </script>
 
 <script lang="ts">
 	import ListItem from '$lib/components/ListItem.svelte';
+	import * as utils from '$lib/utils';
 
 	export let tracklist: Tracklist;
 </script>
@@ -40,7 +33,7 @@
 			</div>
 
 			<div class="ml-4">
-				<h2>{getTrackDisplayName(track.track)}</h2>
+				<h2>{utils.getTrackName(track.track)}</h2>
 				<p class="mt-2">
 					<a href="/artists/{track.track.artist.id}" class="cursor-pointer text-blue-500"
 						>{track.track.artist.name}</a
