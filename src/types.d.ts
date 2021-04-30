@@ -23,6 +23,8 @@ type IndexedTrack = {
 type Tracklist = {
 	id: string;
 	name: string;
+	date: Date;
 	artists: Artist[];
 	tracks: IndexedTrack[];
+	tags: string[];
 };

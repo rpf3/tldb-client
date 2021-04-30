@@ -25,21 +25,47 @@
 	<h1>{tracklist.name}</h1>
 </div>
 
-<ol class="list-none">
-	{#each tracklist.tracks as track, i}
-		<ListItem isLastItem={i < tracklist.tracks.length - 1}>
-			<div>
-				<span>{track.index}</span>
+<div class="grid grid-cols-5 gap-4">
+	<div>
+		<div class="p-2 border-r">
+			<div class="mb-5 text-center">
+				<h2>Details</h2>
 			</div>
 
-			<div class="ml-4">
-				<h2>{utils.getTrackName(track.track)}</h2>
-				<p class="mt-2">
-					<a href="/artists/{track.track.artist.id}" class="cursor-pointer text-blue-500"
-						>{track.track.artist.name}</a
-					>
-				</p>
+			<div class="grid grid-cols-5 gap-2">
+				<div>Date</div>
+				<div class="col-span-4">{tracklist.date}</div>
+
+				<div>Tags</div>
+				<div class="col-span-4">
+					<div class="flex flex-wrap gap-1">
+						{#each tracklist.tags as tag}
+							<div class="border border-solid rounded-full text-center px-3 py-1">{tag}</div>
+						{/each}
+					</div>
+				</div>
 			</div>
-		</ListItem>
-	{/each}
-</ol>
+		</div>
+	</div>
+
+	<div class="col-span-4">
+		<ol class="list-none">
+			{#each tracklist.tracks as track, i}
+				<ListItem isLastItem={i < tracklist.tracks.length - 1}>
+					<div>
+						<span>{track.index}</span>
+					</div>
+
+					<div class="ml-4">
+						<h2>{utils.getTrackName(track.track)}</h2>
+						<p class="mt-2">
+							<a href="/artists/{track.track.artist.id}" class="cursor-pointer text-blue-500"
+								>{track.track.artist.name}</a
+							>
+						</p>
+					</div>
+				</ListItem>
+			{/each}
+		</ol>
+	</div>
+</div>
