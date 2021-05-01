@@ -1,12 +1,15 @@
 <script lang="ts">
+	import TextLink from '$lib/components/TextLink.svelte';
+
 	export let track: Track;
 </script>
 
 {#if track.remix}
 	<span
-		>{track.name} (<a href="/artists/{track.remix.artist.id}" class="cursor-pointer text-blue-500"
-			>{track.remix.artist.name}</a
-		>
+		>{track.name} (<TextLink
+			href="/artists/{track.remix.artist.id}"
+			text={track.remix.artist.name}
+		/>
 		{track.remix.name})</span
 	>
 {:else}
