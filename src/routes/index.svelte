@@ -18,6 +18,7 @@
 </script>
 
 <script lang="ts">
+	import TextLink from '$lib/components/TextLink.svelte';
 	import ButtonLink from '$lib/components/ButtonLink.svelte';
 	import IconLink from '$lib/components/IconLink.svelte';
 	import ListItem from '$lib/components/ListItem.svelte';
@@ -38,7 +39,7 @@
 
 				<p class="mt-2">
 					{#each tracklist.artists as artist, i}
-						<a href="/artists/{artist.id}" class="cursor-pointer text-blue-500">{artist.name}</a>
+						<TextLink href="/artists/{artist.id}" text={artist.name} />
 						{i == tracklist.artists.length - 1 ? '' : ' & '}
 					{/each}
 				</p>
