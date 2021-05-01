@@ -21,8 +21,7 @@
 <script lang="ts">
 	import IconLink from '$lib/components/IconLink.svelte';
 	import ListItem from '$lib/components/ListItem.svelte';
-
-	import * as utils from '$lib/utils';
+	import TrackName from '$lib/components/TrackName.svelte';
 
 	export let artist: Artist;
 	export let tracklists: Tracklist[];
@@ -57,7 +56,7 @@
 	{#each tracks as track, i}
 		<ListItem isLastItem={i < tracks.length - 1}>
 			<div class="flex-grow">
-				<span>{utils.getTrackName(track)}</span>
+				<TrackName {track} />
 			</div>
 		</ListItem>
 	{/each}

@@ -17,7 +17,7 @@
 <script lang="ts">
 	import IconLink from '$lib/components/IconLink.svelte';
 	import ListItem from '$lib/components/ListItem.svelte';
-	import * as utils from '$lib/utils';
+	import TrackName from '$lib/components/TrackName.svelte';
 
 	export let tracklist: Tracklist;
 </script>
@@ -58,7 +58,8 @@
 					</div>
 
 					<div class="flex-grow ml-4">
-						<h2>{utils.getTrackName(track.track)}</h2>
+						<TrackName track={track.track} />
+
 						<p class="mt-2">
 							<a href="/artists/{track.track.artist.id}" class="cursor-pointer text-blue-500"
 								>{track.track.artist.name}</a
