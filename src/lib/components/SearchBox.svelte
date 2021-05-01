@@ -1,7 +1,9 @@
 <script lang="ts" context="module">
 	var handleSearch = async function (event) {
-		if (event.keyCode == 13) {
-			window.location.assign(`/search?query=${searchString}`);
+		const query = searchString.trim();
+
+		if (event.keyCode == 13 && query !== '') {
+			window.location.assign(`/search?query=${query}`);
 		}
 	};
 
