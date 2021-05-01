@@ -15,6 +15,7 @@
 </script>
 
 <script lang="ts">
+	import TextLink from '$lib/components/TextLink.svelte';
 	import IconLink from '$lib/components/IconLink.svelte';
 	import ListItem from '$lib/components/ListItem.svelte';
 	import TrackName from '$lib/components/TrackName.svelte';
@@ -61,9 +62,7 @@
 						<TrackName track={track.track} />
 
 						<p class="mt-2">
-							<a href="/artists/{track.track.artist.id}" class="cursor-pointer text-blue-500"
-								>{track.track.artist.name}</a
-							>
+							<TextLink href="/artists/{track.track.artist.id}" text={track.track.artist.name} />
 						</p>
 					</div>
 
