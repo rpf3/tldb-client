@@ -58,6 +58,8 @@
 			<div class="flex-grow">
 				<TrackName {track} />
 			</div>
+
+			<IconLink href="/tracks/{track.id}" />
 		</ListItem>
 	{/each}
 </ol>
