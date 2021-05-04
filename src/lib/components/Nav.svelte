@@ -1,4 +1,5 @@
 <script lang="ts">
+	import DarkToggle from '$lib/components/DarkToggle.svelte';
 	import SearchBox from '$lib/components/SearchBox.svelte';
 </script>
 
@@ -14,6 +15,7 @@
 
 		<div class="flex-grow" />
 
+		<DarkToggle enabled={true} />
 		<SearchBox />
 	</div>
 </header>
