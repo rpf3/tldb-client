@@ -12,7 +12,7 @@
 
 <input
 	type="text"
-	class="border rounded p-2 w-4/12"
+	class="border rounded p-2 w-4/12 dark:bg-gray-900 dark:border-gray-700"
 	placeholder="Search"
 	bind:value={searchString}
 	on:keydown={handleSearch}

@@ -2,7 +2,7 @@
 	import SearchBox from '$lib/components/SearchBox.svelte';
 </script>
 
-<header class="text-gray-600 body-font">
+<header class="text-gray-600 body-font dark:bg-gray-800 dark:text-gray-300">
 	<div class="flex p-5 items-center">
 		<a href="/" class="font-medium">
 			<span class="text-xl">tldb</span>
