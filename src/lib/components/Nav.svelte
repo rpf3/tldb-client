@@ -15,7 +15,7 @@
 
 		<div class="flex-grow" />
 
-		<DarkToggle enabled={true} />
+		<DarkToggle />
 		<SearchBox />
 	</div>
 </header>
