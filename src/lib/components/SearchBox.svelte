@@ -1,9 +1,11 @@
 <script lang="ts" context="module">
+	import { goto } from '$app/navigation';
+
 	var handleSearch = async function (event) {
 		const query = searchString.trim();
 
 		if (event.keyCode == 13 && query !== '') {
-			window.location.assign(`/search?query=${query}`);
+			goto(`/search?query=${query}`);
 		}
 	};
 
