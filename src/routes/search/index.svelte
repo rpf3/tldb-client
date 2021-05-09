@@ -68,38 +68,38 @@
 			</div>
 
 			<div>
-				<div>
+				<div class="flex items-center">
 					<input
 						type="radio"
 						id="filterTracklists"
-						class="cursor-pointer"
+						class="cursor-pointer border-gray-200 text-blue-500 focus:ring-blue-500"
 						bind:group={resourceFilter}
 						value="tracklist"
 						on:change={applyFilters}
 					/>
-					<label for="filterTracklists">Tracklists</label>
+					<label for="filterTracklists" class="ml-2">Tracklists</label>
 				</div>
-				<div>
+				<div class="flex items-center">
 					<input
 						type="radio"
 						id="filterTracks"
-						class="cursor-pointer"
+						class="cursor-pointer border-gray-200 text-blue-500 focus:ring-blue-500"
 						bind:group={resourceFilter}
 						value="track"
 						on:change={applyFilters}
 					/>
-					<label for="filterTracks">Tracks</label>
+					<label for="filterTracks" class="ml-2">Tracks</label>
 				</div>
-				<div>
+				<div class="flex items-center">
 					<input
 						type="radio"
 						id="filterArtists"
-						class="cursor-pointer"
+						class="cursor-pointer border-gray-200 text-blue-500 focus:ring-blue-500"
 						bind:group={resourceFilter}
 						value="artist"
 						on:change={applyFilters}
 					/>
-					<label for="filterArtists">Artists</label>
+					<label for="filterArtists" class="ml-2">Artists</label>
 				</div>
 			</div>
 		</div>

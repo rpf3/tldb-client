@@ -14,7 +14,7 @@
 
 <input
 	type="text"
-	class="border rounded p-2 w-4/12 dark:bg-gray-900 dark:border-gray-700"
+	class="border rounded w-4/12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700"
 	placeholder="Search"
 	bind:value={searchString}
 	on:keydown={handleSearch}
