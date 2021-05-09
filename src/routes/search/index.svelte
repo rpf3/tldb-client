@@ -41,6 +41,7 @@
 	import IconLink from '$lib/components/IconLink.svelte';
 	import ListItem from '$lib/components/ListItem.svelte';
 	import TrackName from '$lib/components/TrackName.svelte';
+	import RadioGroup from '$lib/components/RadioGroup.svelte';
 
 	var applyFilters = async function (event) {
 		goto(`/search?query=${query}&type=${resourceFilter}`);
@@ -54,6 +55,21 @@
 	export let resourceType: string;
 
 	let resourceFilter: string = resourceType;
+
+	let filterOptions: RadioOption[] = [
+		{
+			key: 'Tracklists',
+			value: 'tracklist'
+		},
+		{
+			key: 'Tracks',
+			value: 'track'
+		},
+		{
+			key: 'Artists',
+			value: 'artist'
+		}
+	];
 </script>
 
 <div class="flex flex-col text-center mb-10">
@@ -67,41 +83,7 @@
 				<h2>Filters</h2>
 			</div>
 
-			<div>
-				<div class="flex items-center">
-					<input
-						type="radio"
-						id="filterTracklists"
-						class="cursor-pointer border-gray-200 text-blue-500 focus:ring-blue-500"
-						bind:group={resourceFilter}
-						value="tracklist"
-						on:change={applyFilters}
-					/>
-					<label for="filterTracklists" class="ml-2">Tracklists</label>
-				</div>
-				<div class="flex items-center">
-					<input
-						type="radio"
-						id="filterTracks"
-						class="cursor-pointer border-gray-200 text-blue-500 focus:ring-blue-500"
-						bind:group={resourceFilter}
-						value="track"
-						on:change={applyFilters}
-					/>
-					<label for="filterTracks" class="ml-2">Tracks</label>
-				</div>
-				<div class="flex items-center">
-					<input
-						type="radio"
-						id="filterArtists"
-						class="cursor-pointer border-gray-200 text-blue-500 focus:ring-blue-500"
-						bind:group={resourceFilter}
-						value="artist"
-						on:change={applyFilters}
-					/>
-					<label for="filterArtists" class="ml-2">Artists</label>
-				</div>
-			</div>
+			<RadioGroup bind:value={resourceFilter} options={filterOptions} on:change={applyFilters} />
 		</div>
 	</div>
 

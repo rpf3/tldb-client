@@ -28,3 +28,8 @@ type Tracklist = {
 	tracks: IndexedTrack[];
 	tags: string[];
 };
+
+type RadioOption = {
+	key: string;
+	value: string;
+};
