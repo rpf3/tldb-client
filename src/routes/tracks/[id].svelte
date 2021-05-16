@@ -4,11 +4,11 @@
 	export async function load({ page }) {
 		const trackId = page.params.id;
 
-		const track = await api.get(`/tracks/${trackId}?verbose=1`);
+		const tracks: Track[] = await api.get(`/tracks/${trackId}?verbose=1`);
 
 		return {
 			props: {
-				track: track
+				track: tracks[0]
 			}
 		};
 	}

@@ -6,26 +6,46 @@
 		let query = String(page.query.get('query'));
 		let pageParam = Number(page.query.get('page'));
 		let pageNumber = pageParam > 1 ? pageParam : 1;
-		let skip = pageNumber > 1 ? (pageNumber - 1) * 10 : 0;
+		let take = 10;
+		let skip = pageNumber > 1 ? (pageNumber - 1) * take : 0;
 
 		let resourceType = String(page.query.get('type') || 'tracklist');
+
+		let searchResults: SearchResults;
+
+		if (resourceType === 'track') {
+			searchResults = await api.get(`/tracks?skip=${skip}&query=${query}`);
+		} else if (resourceType == 'artist') {
+			searchResults = await api.get(`/artists?skip=${skip}&query=${query}`);
+		} else {
+			searchResults = await api.get(`/tracklists?skip=${skip}&query=${query}`);
+		}
 
 		let tracks: Track[];
 		let artists: Artist[];
 		let tracklists: Tracklist[];
 
-		if (resourceType === 'track') {
-			tracks = await api.get(`/tracks?verbose=1&skip=${skip}&query=${query}`);
-		} else if (resourceType == 'artist') {
-			artists = await api.get(`/artists?skip=${skip}&query=${query}`);
+		if (searchResults.total > 0) {
+			let ids = searchResults.results.join(';');
+
+			if (resourceType === 'track') {
+				tracks = await api.get(`/tracks/${ids}?verbose=1`);
+			} else if (resourceType == 'artist') {
+				artists = await api.get(`/artists/${ids}?verbose=1`);
+			} else {
+				tracklists = await api.get(`/tracklists/${ids}?verbose=1`);
+			}
 		} else {
-			tracklists = await api.get(`/tracklists?verbose=1&skip=${skip}&query=${query}`);
+			tracks = [];
+			artists = [];
+			tracklists = [];
 		}
 
 		return {
 			props: {
 				query: query,
 				pageNumber: pageNumber,
+				pageCount: Math.ceil(searchResults.total / take),
 				tracks: tracks,
 				artists: artists,
 				tracklists: tracklists,
@@ -49,6 +69,7 @@
 
 	export let query: string;
 	export let pageNumber: number;
+	export let pageCount: number;
 	export let tracks: Track[];
 	export let artists: Artist[];
 	export let tracklists: Tracklist[];
@@ -139,10 +160,14 @@
 				<ButtonLink text="Previous" />
 			{/if}
 
-			<ButtonLink
-				href="/search?query={query}&page={pageNumber + 1}&type={resourceType}"
-				text="Next"
-			/>
+			{#if pageNumber < pageCount}
+				<ButtonLink
+					href="/search?query={query}&page={pageNumber + 1}&type={resourceType}"
+					text="Next"
+				/>
+			{:else}
+				<ButtonLink text="Next" />
+			{/if}
 		</div>
 	</div>
 </div>

@@ -4,13 +4,19 @@
 	export async function load({ page }) {
 		let pageParam = Number(page.query.get('page'));
 		let pageNumber = pageParam > 1 ? pageParam : 1;
-		let skip = pageNumber > 1 ? (pageNumber - 1) * 10 : 0;
+		let take = 10;
+		let skip = pageNumber > 1 ? (pageNumber - 1) * take : 0;
 
-		const tracklists = await api.get(`/tracklists?verbose=1&skip=${skip}`);
+		const searchResults: SearchResults = await api.get(`/tracklists?verbose=1&skip=${skip}`);
+
+		let ids = searchResults.results.join(';');
+
+		let tracklists = await api.get(`/tracklists/${ids}?verbose=1`);
 
 		return {
 			props: {
 				pageNumber: pageNumber,
+				pageCount: Math.ceil(searchResults.total / take),
 				tracklists: tracklists
 			}
 		};
@@ -24,6 +30,7 @@
 	import ListItem from '$lib/components/ListItem.svelte';
 
 	export let pageNumber: number;
+	export let pageCount: number;
 	export let tracklists: Tracklist[];
 </script>
 
@@ -57,5 +64,9 @@
 		<ButtonLink text="Previous" />
 	{/if}
 
-	<ButtonLink href="/?page={pageNumber + 1}" text="Next" />
+	{#if pageNumber < pageCount}
+		<ButtonLink href="/?page={pageNumber + 1}" text="Next" />
+	{:else}
+		<ButtonLink text="Next" />
+	{/if}
 </div>

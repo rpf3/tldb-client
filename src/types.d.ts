@@ -33,3 +33,8 @@ type RadioOption = {
 	key: string;
 	value: string;
 };
+
+type SearchResults = {
+	results: string[];
+	total: number;
+};

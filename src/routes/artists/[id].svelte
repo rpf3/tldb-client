@@ -4,13 +4,13 @@
 	export async function load({ page }) {
 		const artistId = page.params.id;
 
-		const artist = await api.get(`/artists/${artistId}`);
-		const tracklists = await api.get(`/artists/${artistId}/tracklists`);
-		const tracks = await api.get(`/artists/${artistId}/tracks?verbose=1`);
+		const artists: Artist[] = await api.get(`/artists/${artistId}`);
+		const tracklists: Tracklist[] = await api.get(`/artists/${artistId}/tracklists`);
+		const tracks: Track[] = await api.get(`/artists/${artistId}/tracks?verbose=1`);
 
 		return {
 			props: {
-				artist: artist,
+				artist: artists[0],
 				tracklists: tracklists,
 				tracks: tracks
 			}

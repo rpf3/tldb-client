@@ -4,11 +4,11 @@
 	export async function load({ page }) {
 		const tracklistId = page.params.id;
 
-		const tracklist = await api.get(`/tracklists/${tracklistId}?verbose=1`);
+		const tracklists: Tracklist[] = await api.get(`/tracklists/${tracklistId}?verbose=1`);
 
 		return {
 			props: {
-				tracklist: tracklist
+				tracklist: tracklists[0]
 			}
 		};
 	}
